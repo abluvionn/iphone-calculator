@@ -63,6 +63,7 @@ function App() {
 
   return (
     <div className='phone'>
+      <button onClick={() => setIsLoggedIn(false)} className='logout-button'>Logout</button>
       <input type='text' className='display' value={input} readOnly />
       <div className='buttons'>
         <button onClick={clearDisplay} className='button button-grey'>
@@ -122,7 +123,7 @@ function App() {
         <button onClick={() => addToDisplay('0')} className='button button-lg'>
           0
         </button>
-        <button onClick={() => addToDisplay(',')} className='button'>
+        <button onClick={() => addToDisplay('.')} className='button'>
           ,
         </button>
         <button onClick={calculate} className='button button-yellow'>
