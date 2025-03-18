@@ -2,7 +2,22 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [input, setInput] = useState('');
+
+  function handleLogin(e) {
+    e.preventDefault();
+    if (
+      username.toLowerCase() === 'admin' &&
+      password.toLowerCase() === '12345'
+    ) {
+      setIsLoggedIn(true);
+    } else {
+      alert('Wrong username or password.');
+    }
+  }
 
   function addToDisplay(input) {
     setInput((prev) => prev + input);
@@ -18,6 +33,32 @@ function App() {
     } catch (_e) {
       setInput('Error');
     }
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <form onSubmit={handleLogin} className='form'>
+        <input
+          type='text'
+          value={username}
+          placeholder='Username (admin)'
+          className='form-input'
+          required
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type='password'
+          value={password}
+          placeholder='Password (12345)'
+          className='form-input'
+          required
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type='submit' className='form-submit'>
+          Login
+        </button>
+      </form>
+    );
   }
 
   return (
